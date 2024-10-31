@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gia Linh SBH</title>
+    <title>Adelaide</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('faviconhoa.ico') }}" type="image/x-icon">
@@ -46,32 +46,13 @@
             <i class="icon_search"></i>
         </div>
         <div class="header-configure-area">
-            <div class="language-option">
-                <img src="{{ asset('assests/images/flag.jpg') }}" alt="">
-                <span>EN <i class="fa fa-angle-down"></i></span>
-                <div class="flag-dropdown">
-                    <ul>
-                        <li><a href="#">Zi</a></li>
-                        <li><a href="#">Fr</a></li>
-                    </ul>
-                </div>
-            </div>
             <a href="/login" class="bk-btn">Login Now</a>
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./rooms.html">Rooms</a></li>
-                <li><a href="./about-us.html">About Us</a></li>
-                <li><a href="./pages.html">Pages</a>
-                    <ul class="dropdown">
-                        <li><a href="./room-details.html">Room Details</a></li>
-                        <li><a href="#">Deluxe Room</a></li>
-                        <li><a href="#">Family Room</a></li>
-                        <li><a href="#">Premium Room</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">News</a></li>
+                <li><a href="./rooms.html">Hotel</a></li>
+                <li><a href="./about-us.html">Service</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -108,17 +89,26 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="/login" class="bk-btn">Login Now</a>
-                            <div class="language-option">
-                                <img src="{{ asset('assests/images/flag.jpg') }}" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
-                                    </ul>
+                            @if (Session::has('username'))
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="userMenu"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Hello, {{ Session::get('username') }}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="userMenu">
+                                        <a class="dropdown-item" href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <a href="/login" class="bk-btn">Login Now</a>
+                            @endif
+
+
                         </div>
                     </div>
                 </div>
@@ -140,8 +130,6 @@
                                         href="/">Home</a></li>
                                 <li class="nav-item nav-link {{ Request::is('/hotel') ? 'active' : '' }}"><a
                                         href="/hotel">Hotel</a></li>
-                                {{-- <li class="nav-item nav-link {{ Request::is('/review') ? 'active' : '' }}"><a
-                                        href="/review">Review</a> --}}
                                 <li class="nav-item nav-link {{ Request::is('/service') ? 'active' : '' }}"><a
                                         href="/service">Service</a>
                                 <li class="nav-item nav-link {{ Request::is('/contact') ? 'active' : '' }}"><a
@@ -158,6 +146,80 @@
     </header>
     <!-- Header End -->
 
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Our Services</h2>
+                        <div class="bt-option">
+                            <a href="/">Home</a>
+                            <span>Services</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Services Section End -->
+    <section class="services-section spad">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-036-parking"></i>
+                        <h4>Loyalty programn</h4>
+                        <p>To thank customers who regularly use our services, we launch a Loyalty program with many
+                            attractive incentives</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-033-dinner"></i>
+                        <h4>Accumulate points</h4>
+                        <p>Earn points every time you make a reservation, redeem attractive gifts! The higher the level,
+                            the greater the benefit!</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-026-bed"></i>
+                        <h4>Promotions and offers</h4>
+                        <p>Brilliant promotions - Surprisingly cheap prices!</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-024-towel"></i>
+                        <h4>Laundry</h4>
+                        <p>Sophisticated from clean to fragrant - Our laundry service brings comfort and convenience to
+                            all your trips!</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-044-clock-1"></i>
+                        <h4>24/7 Customer Support service</h4>
+                        <p>Unlimited support. Willing to support anytime, anywhere</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-012-cocktail"></i>
+                        <h4>Bar & Drink</h4>
+                        <p>"Bringing true joy, a glass of exquisite drink at our bar is the ideal stop on every
+                            journey!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
 
 
     <!-- Footer Section Begin -->

@@ -268,6 +268,11 @@ ul, ol {
 .header-section.header-normal .menu-item {
 	-webkit-box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
 	box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
+}.top-nav .tn-right {
+	display: flex;
+	align-items: center;
+	text-align: right;
+
 }
 .top-nav {
 	border-bottom: 1px solid #e5e5e5;
@@ -300,6 +305,9 @@ ul, ol {
 .top-nav .tn-left li i {
 	color: #dfa974;
 	margin-right: 4px;
+}
+.tn-right {
+	padding-left: 118px;
 }
 .top-nav .tn-right {
 	text-align: right;

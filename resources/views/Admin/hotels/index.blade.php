@@ -1,12 +1,18 @@
-<!-- resources/views/hotels/index.blade.php -->
-
 @extends('Admin.layouts.app')
 
 @section('content')
     <div class="container" style="padding-top: 20px mb-2">
         <h2>Danh sách khách sạn</h2>
-        <a href="{{ route('Admin.hotels.create') }}" class="btn btn-primary mb-3">Thêm
-            mới</a>
+
+        <!-- Nút đăng xuất -->
+        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+            @csrf
+            <button type="submit" class="btn btn-danger mb-3"
+                onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')">Đăng xuất</button>
+        </form>
+
+        <a href="{{ route('Admin.hotels.create') }}" class="btn btn-primary mb-3">Thêm mới</a>
+
         <table class="table">
             <thead>
                 <tr>
@@ -55,10 +61,8 @@
         <div class="d-flex justify-content-between align-items-center">
             <div>
                 @if ($hotels->onFirstPage())
-                    <!-- Nút không hoạt động khi ở trang đầu tiên -->
                     <span><i class="fas fa-arrow-left fa-sm"></i></span>
                 @else
-                    <!-- Nút chuyển đến trang trước -->
                     <a href="{{ $hotels->previousPageUrl() }}"><i class="fas fa-arrow-left fa-sm"></i></a>
                 @endif
             </div>

@@ -3,6 +3,54 @@
 @tailwind components;
 @tailwind utilities;
 
+#toast-container>div {
+  background-color: #666666 !important;
+}
+
+.compare-card {
+    background-color: #fff; /* Màu nền trắng cho card */
+    border-radius: 10px; /* Bo góc card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    overflow: hidden; /* Ẩn phần tràn ra ngoài */
+    margin: 12px; /* Khoảng cách giữa các card */
+    padding: 15px; /* Khoảng cách giữa nội dung và biên */
+    position: relative; /* Để đặt phần tử tuyệt đối trong card */
+    transition: transform 0.2s ease-in-out; /* Hiệu ứng khi hover */
+}
+
+.compare-card:hover {
+    transform: scale(1.02); /* Phóng to nhẹ khi hover */
+}
+
+.compare-card img {
+    width: 100%; /* Đảm bảo ảnh rộng đầy card */
+    height: auto; /* Tự động tính toán chiều cao */
+    border-radius: 10px; /* Bo tròn ảnh cùng card */
+}
+
+.compare-card h5 {
+    color: #333; /* Màu chữ */
+    margin: 5px 0; /* Khoảng cách giữa các tiêu đề */
+}
+
+.remove-from-compare {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px; /* Kích thước biểu tượng */
+    color: #ff0000; /* Màu đỏ để nổi bật */
+    cursor: pointer; /* Thêm biểu tượng con trỏ khi hover */
+    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+    padding: 5px 12px !important; /* Khoảng đệm bên trong */
+    border-radius: 50%; /* Bo tròn nút */
+    transition: background-color 0.2s;
+}
+
+.remove-from-compare:hover {
+    background-color: rgba(255, 0, 0, 0.8); /* Nền đỏ khi hover */
+    color: #fff;
+}
+
 
 td img {
     max-width: 100px; /* Đặt chiều rộng tối đa của hình ảnh */

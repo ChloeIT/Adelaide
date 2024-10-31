@@ -42,36 +42,17 @@
         <div class="canvas-close">
             <i class="icon_close"></i>
         </div>
-        <div class="search-icon search-switch">
+        <div class="search-icon  search-switch">
             <i class="icon_search"></i>
         </div>
         <div class="header-configure-area">
-            <div class="language-option">
-                <img src="img/flag.jpg" alt="">
-                <span>EN <i class="fa fa-angle-down"></i></span>
-                <div class="flag-dropdown">
-                    <ul>
-                        <li><a href="#">Zi</a></li>
-                        <li><a href="#">Fr</a></li>
-                    </ul>
-                </div>
-            </div>
-            <a href="#" class="bk-btn">Booking Now</a>
+            <a href="/login" class="bk-btn">Login Now</a>
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./rooms.html">Rooms</a></li>
-                <li><a href="./about-us.html">About Us</a></li>
-                <li><a href="./pages.html">Pages</a>
-                    <ul class="dropdown">
-                        <li><a href="./room-details.html">Room Details</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                        <li><a href="#">Family Room</a></li>
-                        <li><a href="#">Premium Room</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">News</a></li>
+                <li><a href="./rooms.html">Hotel</a></li>
+                <li><a href="./about-us.html">Service</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -84,7 +65,7 @@
         </div>
         <ul class="top-widget">
             <li><i class="fa fa-phone"></i> 0123456789 </li>
-            <li><i class="fa fa-envelope"></i> adelaide@gmail.com</li>
+            <li><i class="fa fa-envelope"></i> adelaide@gmail.com </li>
         </ul>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -108,17 +89,26 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="/login" class="bk-btn">Login Now</a>
-                            <div class="language-option">
-                                <img src="{{ asset('assests/images/flag.jpg') }}" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
-                                    </ul>
+                            @if (Session::has('username'))
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="userMenu"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Hello, {{ Session::get('username') }}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="userMenu">
+                                        <a class="dropdown-item" href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <a href="/login" class="bk-btn">Login Now</a>
+                            @endif
+
+
                         </div>
                     </div>
                 </div>
@@ -140,10 +130,8 @@
                                         href="/">Home</a></li>
                                 <li class="nav-item nav-link {{ Request::is('/hotel') ? 'active' : '' }}"><a
                                         href="/hotel">Hotel</a></li>
-                                {{-- <li class="nav-item nav-link {{ Request::is('/review') ? 'active' : '' }}"><a href="/review">Review</a> --}}
                                 <li class="nav-item nav-link {{ Request::is('/service') ? 'active' : '' }}"><a
                                         href="/service">Service</a>
-
                                 <li class="nav-item nav-link {{ Request::is('/contact') ? 'active' : '' }}"><a
                                         href="/contact">Contact</a></li>
                             </nav>

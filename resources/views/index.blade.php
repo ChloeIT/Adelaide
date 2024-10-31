@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('assests/css/magnific-popup.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assests/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assests/css/style.css') }}" type="text/css">
+
 </head>
 
 <body>
@@ -46,33 +47,14 @@
             <i class="icon_search"></i>
         </div>
         <div class="header-configure-area">
-            <div class="language-option">
-                <img src="{{ asset('assests/images/flag.jpg') }}" alt="">
-                <span>EN <i class="fa fa-angle-down"></i></span>
-                <div class="flag-dropdown">
-                    <ul>
-                        <li><a href="#">Zi</a></li>
-                        <li><a href="#">Fr</a></li>
-                    </ul>
-                </div>
-            </div>
             <a href="/login" class="bk-btn">Login Now</a>
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./rooms.html">Rooms</a></li>
-                <li><a href="./about-us.html">About Us</a></li>
-                <li><a href="./pages.html">Pages</a>
-                    <ul class="dropdown">
-                        <li><a href="./room-details.html">Room Details</a></li>
-                        <li><a href="#">Deluxe Room</a></li>
-                        <li><a href="#">Family Room</a></li>
-                        <li><a href="#">Premium Room</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">News</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/hotel">Hotel</a></li>
+                <li><a href="/service">Service</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -108,17 +90,26 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="/login" class="bk-btn">Login Now</a>
-                            <div class="language-option">
-                                <img src="{{ asset('assests/images/flag.jpg') }}" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
-                                    </ul>
+                            @if (Session::has('username'))
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="userMenu"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Hello, {{ Session::get('username') }}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="userMenu">
+                                        <a class="dropdown-item" href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <a href="/login" class="bk-btn">Login Now</a>
+                            @endif
+
+
                         </div>
                     </div>
                 </div>
@@ -140,8 +131,6 @@
                                         href="/">Home</a></li>
                                 <li class="nav-item nav-link {{ Request::is('/hotel') ? 'active' : '' }}"><a
                                         href="/hotel">Hotel</a></li>
-                                {{-- <li class="nav-item nav-link {{ Request::is('/review') ? 'active' : '' }}"><a
-                                        href="/review">Review</a> --}}
                                 <li class="nav-item nav-link {{ Request::is('/service') ? 'active' : '' }}"><a
                                         href="/service">Service</a>
                                 <li class="nav-item nav-link {{ Request::is('/contact') ? 'active' : '' }}"><a
@@ -288,7 +277,8 @@
             <div class="hp-room-items">
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="{{ asset('assests/images/room/room-b1.jpg') }}">
+                        <div class="hp-room-item set-bg"
+                            data-setbg="{{ asset('assests/images/cattuonghotel.jpg') }}">
                             <div class="hr-text">
                                 <h3>Double Room</h3>
                                 <h2>199$<span>/Pernight</span></h2>
@@ -609,6 +599,10 @@
     <script src="{{ asset('assests/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('assests/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assests/js/main.js') }}"></script>
+    <!-- jQuery và Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
